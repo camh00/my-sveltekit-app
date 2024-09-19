@@ -1,6 +1,6 @@
 <div class="container h-full mx-auto flex justify-center items-center text-center">
 	<div class="space-y-5">
-		<h1 class="h1" >Let's get cracking bones!</h1>
+		<h1 class="h1" >Welcome</h1>
 		
 		<nav class="nav btn-group">
 			<!-- (optionally you can provide a label here) -->
@@ -19,13 +19,6 @@
 		</nav>
 		<hr class="!border-t-4" />
 
-		<p>Start by exploring:</p>
-		<ul>
-			<li><code class="code">/src/routes/+layout.svelte</code> - barebones layout</li>
-			<li><code class="code">/src/app.postcss</code> - app wide css</li>
-			<li>
-				<code class="code">/src/routes/+page.svelte</code> - this page, you can replace the contents
-			</li>
-		</ul>
+		<p>My name is Cameron Hancock and this is my Sveltekit app for CS3380: JavaScript Software Development.</p>
 	</div>
 </div>

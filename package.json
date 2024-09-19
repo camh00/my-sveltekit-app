@@ -40,6 +40,8 @@
   "type": "module",
   "dependencies": {
     "@floating-ui/dom": "1.6.10",
-    "highlight.js": "11.10.0"
+    "flowbite-svelte": "^0.46.16",
+    "highlight.js": "11.10.0",
+    "sidebar": "^1.0.2"
   }
 }
