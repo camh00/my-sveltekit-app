@@ -18,6 +18,10 @@
 						<span>🖥️</span>
 						<span class="flex-auto">Examples</span>
 					</a>
+					<a href="/pokemon" class="bg-primary-500">
+						<span>🎮</span>
+						<span class="flex-auto">Pokemon</span>
+					</a>
 				</li>
 			</ul>
 		</nav>

@@ -15,4 +15,8 @@ const config = {
 		adapter: adapter()
 	}
 };
-export default config;
+export default {
+	kit: {
+	  adapter: adapter()
+	}
+  };
