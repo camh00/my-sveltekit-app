@@ -7,3 +7,6 @@ declare namespace App {
 	// interface Error {}
 	// interface Platform {}
 }
+import { initializeStores, Modal } from '@skeletonlabs/skeleton';
+
+initializeStores();

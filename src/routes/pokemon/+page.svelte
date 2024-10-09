@@ -1,13 +1,45 @@
-<script>
+<Modal />
+<script lang="ts">
 	import { onMount } from 'svelte';
+	import { Modal } from '@skeletonlabs/skeleton';
+	import { getModalStore } from '@skeletonlabs/skeleton';
+	import type { ModalSettings } from '@skeletonlabs/skeleton';
+		const modalStore = getModalStore();
+						
 
-	/** @type {Array<{ id: string, name: string, image: string }>} */
-	let pokemon = [];
+	// Define the Pokemon type
+    // type Pokemon = {
+    //     id: string;
+    //     name: string;
+    //     sprite: string;
+    // };
 
-	onMount(async () => {
-		const res = await fetch('/path/to/your/pokemon.json');
-		pokemon = await res.json();
+	let pokemon: any[] = [];
+	let moves = [];
+	let selectedPokemon: any | null = null;
+
+	onMount(async () => {	
+		const res = await fetch('src/routes/pokemon/pokemon.json');
+		const data = await res.json();
+		pokemon = data.pokemon;
+		// moves = data.moves;
+		console.log(data);
 	});
+	const openModal = (poke: any) => {
+        const modal: ModalSettings = {
+			type: 'alert',
+			// Data
+			title: poke.name,
+			body: 'This is an example modal.',
+			image: poke.sprite,
+		};
+		modalStore.trigger(modal);
+    };
+
+    // const closeModal = () => {
+    //     showModal = false;
+    //     selectedPokemon = null;
+    // };
 </script>
 
 <style>
@@ -46,13 +78,28 @@
 		</nav>
 		<hr class="!border-t-4" />
 		
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+		<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
 			{#each pokemon as poke}
-				<div class="card">
+				<div class="card card-hover" on:click={() => openModal(poke)}>
 					<h2>{poke.name}</h2>
-					<img src={poke.image} alt={poke.name} />
+					<img src={poke.sprite} alt={poke.name} />
 				</div>
 			{/each}
 		</div>
 	</div>
 </div>
+
+<!-- {#if showModal && selectedPokemon}
+    <Modal on:close={closeModal}>
+        <div class="header">
+            <h2>{selectedPokemon.name}</h2>
+        </div>
+        <div class="body">
+            <img src={selectedPokemon.sprite} alt={selectedPokemon.name} /> -->
+            <!-- Add more Pokémon details here -->
+        <!-- </div>
+        <div class="footer">
+            <button on:click={closeModal}>Close</button>
+        </div>
+    </Modal>
+{/if} -->
