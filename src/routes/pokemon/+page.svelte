@@ -3,10 +3,20 @@
 	import { getModalStore } from '@skeletonlabs/skeleton';
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
 	import { initializeStores, Modal } from '@skeletonlabs/skeleton';
+	import { Popover } from 'flowbite-svelte';
 
 	initializeStores();
 	const modalStore = getModalStore();
-						
+
+	// Define the Move type
+	type Move = {
+		id: string;
+		name: string;
+		type: string;
+		power: number;
+		accuracy: number;
+		pp: number;
+	};
 
 	// Define the Pokemon type
     type Pokemon = {
@@ -21,14 +31,15 @@
     };
 
 	let pokemon: Pokemon[] = [];
-	let moves = [];
+	let moves: Move[] = [];
 	let selectedPokemon: Pokemon | null = null;
 
 	onMount(async () => {	
 		const res = await fetch('src/routes/pokemon/pokemon.json');
 		const data = await res.json();
 		pokemon = data.pokemon;
-		// moves = data.moves;
+		moves = data.moves;
+
 		console.log(data);
 	});
 	const openModal = (poke: Pokemon) => {
@@ -48,14 +59,37 @@
 					    <p><strong>Types:</strong> ${poke.types.join(', ')}</p>
                         <p><strong>Weight:</strong> ${poke.weight}</p>
                     </div>
-                    <div style="max-height: 150px; overflow-y: auto;">
-                        <p><strong>Moves:</strong> ${poke.moves.join(', ')}</p>
-                    </div>
                 </div>
             `,
 		};
 		modalStore.trigger(modal);
     };
+
+	const openMovesModal = (poke: Pokemon) => {
+		const pokeMoves = poke.moves
+        .map(moveName => moves.find(move => move.name === moveName))
+        .filter((move): move is Move => move !== undefined); // Filter out undefined moves
+		const modal: ModalSettings = {
+			type: 'alert',
+			// Data
+			title: `<divstyle="display: flex; justify-content: space-between;"> <p><strong>${poke.name}<strong></p></div>`,
+			body: 
+				`
+				<div style="max-width: 800px; margin: 0 auto; max-height: 400px; overflow-y: auto;">
+					${pokeMoves.map(move => `
+						<div class="text-right" style="display: flex; justify-content: space-between;">
+							<p><strong>${move.name}</strong></p>
+							<p><strong>Type:</strong> ${move.type}</p>
+							<p><strong>Power:</strong> ${move.power}</p>
+							<p><strong>Accuracy:</strong> ${move.accuracy}</p>
+							<p><strong>PP:</strong> ${move.pp}</p>
+						</div>
+					`).join('')}
+            	</div>
+			`,
+		};
+		modalStore.trigger(modal);
+	};
 
     // const closeModal = () => {
     //     showModal = false;
@@ -101,9 +135,11 @@
 		
 		<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
 			{#each pokemon as poke}
-				<div class="card card-hover" on:click={() => openModal(poke)}>
+				<div class="card card-hover" >
 					<h2>{poke.name}</h2>
 					<img src={poke.sprite} alt={poke.name} />
+					<button class="btn btn-primary bg-slate-700 mb-2" on:click={() => openModal(poke)}>View Details</button>
+					<button class="btn btn-primary bg-slate-700" on:click={() => openMovesModal(poke)}>View Moves</button>
 				</div>
 			{/each}
 		</div>
