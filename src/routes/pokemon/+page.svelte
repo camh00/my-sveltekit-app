@@ -76,15 +76,17 @@
 			body: 
 				`
 				<div style="max-width: 800px; margin: 0 auto; max-height: 400px; overflow-y: auto;">
-					${pokeMoves.map(move => `
-						<div class="text-right" style="display: flex; justify-content: space-between;">
-							<p><strong>${move.name}</strong></p>
-							<p><strong>Type:</strong> ${move.type}</p>
-							<p><strong>Power:</strong> ${move.power}</p>
-							<p><strong>Accuracy:</strong> ${move.accuracy}</p>
-							<p><strong>PP:</strong> ${move.pp}</p>
-						</div>
-					`).join('')}
+					<div class="mb-8">
+						${pokeMoves.map(move => `
+							<div class="text-right" style="display: flex; justify-content: space-between;">
+								<p><strong>${move.name}</strong></p>
+								<p><strong>Type:</strong> ${move.type}</p>
+								<p><strong>Power:</strong> ${move.power}</p>
+								<p><strong>Accuracy:</strong> ${move.accuracy}</p>
+								<p><strong>PP:</strong> ${move.pp}</p>
+							</div>
+						`).join('')}
+					</div>
             	</div>
 			`,
 		};
