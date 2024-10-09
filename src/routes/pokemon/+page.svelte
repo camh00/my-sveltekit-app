@@ -1,22 +1,28 @@
-<Modal />
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Modal } from '@skeletonlabs/skeleton';
 	import { getModalStore } from '@skeletonlabs/skeleton';
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
-		const modalStore = getModalStore();
+	import { initializeStores, Modal } from '@skeletonlabs/skeleton';
+
+	initializeStores();
+	const modalStore = getModalStore();
 						
 
 	// Define the Pokemon type
-    // type Pokemon = {
-    //     id: string;
-    //     name: string;
-    //     sprite: string;
-    // };
+    type Pokemon = {
+        id: string;
+        name: string;
+        sprite: string;
+		base_experience: number;
+		height: number;
+		weight: number;
+		types: string[];
+		moves: string[];
+    };
 
-	let pokemon: any[] = [];
+	let pokemon: Pokemon[] = [];
 	let moves = [];
-	let selectedPokemon: any | null = null;
+	let selectedPokemon: Pokemon | null = null;
 
 	onMount(async () => {	
 		const res = await fetch('src/routes/pokemon/pokemon.json');
@@ -25,13 +31,28 @@
 		// moves = data.moves;
 		console.log(data);
 	});
-	const openModal = (poke: any) => {
+	const openModal = (poke: Pokemon) => {
         const modal: ModalSettings = {
 			type: 'alert',
 			// Data
-			title: poke.name,
-			body: 'This is an example modal.',
+			title: `<divstyle="display: flex; justify-content: space-between;"> <p><strong>${poke.name}<strong></p> <p><strong>ID: </strong>${poke.id}</p> </div>`,
 			image: poke.sprite,
+			body: 
+				`
+				<div style="max-width: 800px; margin: 0 auto;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <p><strong>Base Experience:</strong> ${poke.base_experience}</p>
+                        <p><strong>Height:</strong> ${poke.height}</p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+					    <p><strong>Types:</strong> ${poke.types.join(', ')}</p>
+                        <p><strong>Weight:</strong> ${poke.weight}</p>
+                    </div>
+                    <div style="max-height: 150px; overflow-y: auto;">
+                        <p><strong>Moves:</strong> ${poke.moves.join(', ')}</p>
+                    </div>
+                </div>
+            `,
 		};
 		modalStore.trigger(modal);
     };
@@ -52,7 +73,7 @@
 		text-align: center;
 	}
 </style>
-
+<Modal />
 <div class="container h-full mx-auto flex justify-center items-center text-center">
 	<div class="space-y-5">
 		<h1 class="h1">Pokemon</h1>
