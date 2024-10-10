@@ -99,6 +99,7 @@
 		margin: 8px;
 		text-align: center;
 	}
+
 </style>
 <Modal />
 <div class="container h-full mx-auto flex justify-center items-center text-center">
@@ -130,9 +131,9 @@
 			{#each pokemon as poke}
 				<div class="card card-hover" >
 					<h2>{poke.name}</h2>
-					<img src={poke.sprite} alt={poke.name} />
-					<button class="btn btn-primary bg-slate-700 mb-2" on:click={() => openModal(poke)}>View Details</button>
-					<button class="btn btn-primary bg-slate-700" on:click={() => openMovesModal(poke)}>View Moves</button>
+					<img class="block mx-auto" src={poke.sprite} alt={poke.name} />
+					<button class="btn btn-primary py-2 px-3 w-full bg-slate-700 mb-2" on:click={() => openModal(poke)}>View Details</button>
+					<button class="btn btn-primary py-2 px-3 w-full bg-slate-700" on:click={() => openMovesModal(poke)}>View Moves</button>
 				</div>
 			{/each}
 		</div>
