@@ -1,25 +1,25 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { getModalStore } from '@skeletonlabs/skeleton';
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
 	import { initializeStores, Modal } from '@skeletonlabs/skeleton';
+	import data from '$lib/pokemon.json';
 
 	initializeStores();
 	const modalStore = getModalStore();
 
 	// Define the Move type
 	type Move = {
-		id: string;
 		name: string;
-		type: string;
-		power: number;
-		accuracy: number;
+		id: number;
+		accuracy: number | null;
 		pp: number;
+		power: number | null;
+		type: string;
 	};
 
 	// Define the Pokemon type
     type Pokemon = {
-        id: string;
+        id: number;
         name: string;
         sprite: string;
 		base_experience: number;
@@ -29,18 +29,10 @@
 		moves: string[];
     };
 
-	let pokemon: Pokemon[] = [];
-	let moves: Move[] = [];
+	let pokemon: Pokemon[] = data.pokemon;
+	let moves: Move[] = data.moves;
 	let selectedPokemon: Pokemon | null = null;
 
-	onMount(async () => {	
-		const res = await fetch('src/routes/pokemon/pokemon.json');
-		const data = await res.json();
-		pokemon = data.pokemon;
-		moves = data.moves;
-
-		console.log(data);
-	});
 	const openModal = (poke: Pokemon) => {
         const modal: ModalSettings = {
 			type: 'alert',
