@@ -3,7 +3,6 @@
 	import { getModalStore } from '@skeletonlabs/skeleton';
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
 	import { initializeStores, Modal } from '@skeletonlabs/skeleton';
-	import { Popover } from 'flowbite-svelte';
 
 	initializeStores();
 	const modalStore = getModalStore();
