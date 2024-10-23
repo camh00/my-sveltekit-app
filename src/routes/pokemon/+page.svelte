@@ -1,26 +1,25 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { getModalStore } from '@skeletonlabs/skeleton';
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
 	import { initializeStores, Modal } from '@skeletonlabs/skeleton';
-	import { Popover } from 'flowbite-svelte';
+	import data from '$lib/pokemon.json';
 
 	initializeStores();
 	const modalStore = getModalStore();
 
 	// Define the Move type
 	type Move = {
-		id: string;
 		name: string;
-		type: string;
-		power: number;
-		accuracy: number;
+		id: number;
+		accuracy: number | null;
 		pp: number;
+		power: number | null;
+		type: string;
 	};
 
 	// Define the Pokemon type
     type Pokemon = {
-        id: string;
+        id: number;
         name: string;
         sprite: string;
 		base_experience: number;
@@ -30,22 +29,13 @@
 		moves: string[];
     };
 
-	let pokemon: Pokemon[] = [];
-	let moves: Move[] = [];
+	let pokemon: Pokemon[] = data.pokemon;
+	let moves: Move[] = data.moves;
 	let selectedPokemon: Pokemon | null = null;
 
-	onMount(async () => {	
-		const res = await fetch('src/routes/pokemon/pokemon.json');
-		const data = await res.json();
-		pokemon = data.pokemon;
-		moves = data.moves;
-
-		console.log(data);
-	});
 	const openModal = (poke: Pokemon) => {
         const modal: ModalSettings = {
 			type: 'alert',
-			// Data
 			title: `<divstyle="display: flex; justify-content: space-between;"> <p><strong>${poke.name}<strong></p> <p><strong>ID: </strong>${poke.id}</p> </div>`,
 			image: poke.sprite,
 			body: 
@@ -68,10 +58,9 @@
 	const openMovesModal = (poke: Pokemon) => {
 		const pokeMoves = poke.moves
         .map(moveName => moves.find(move => move.name === moveName))
-        .filter((move): move is Move => move !== undefined); // Filter out undefined moves
+        .filter((move): move is Move => move !== undefined);
 		const modal: ModalSettings = {
 			type: 'alert',
-			// Data
 			title: `<divstyle="display: flex; justify-content: space-between;"> <p><strong>${poke.name}<strong></p></div>`,
 			body: 
 				`
@@ -92,15 +81,9 @@
 		};
 		modalStore.trigger(modal);
 	};
-
-    // const closeModal = () => {
-    //     showModal = false;
-    //     selectedPokemon = null;
-    // };
 </script>
 
 <style>
-	/* Add your styles here */
 	.card {
 		border: 1px solid #ccc;
 		border-radius: 8px;
@@ -115,7 +98,6 @@
 		<h1 class="h1">Pokemon</h1>
 		
 		<nav class="nav btn-group">
-			<!-- (optionally you can provide a label here) -->
 			<ul>
 				<li>
 					<a href="/" class="bg-primary-500">
@@ -139,26 +121,11 @@
 			{#each pokemon as poke}
 				<div class="card card-hover" >
 					<h2>{poke.name}</h2>
-					<img src={poke.sprite} alt={poke.name} />
-					<button class="btn btn-primary bg-slate-700 mb-2" on:click={() => openModal(poke)}>View Details</button>
-					<button class="btn btn-primary bg-slate-700" on:click={() => openMovesModal(poke)}>View Moves</button>
+					<img class="block mx-auto" src={poke.sprite} alt={poke.name} />
+					<button class="btn btn-primary py-2 px-3 w-full bg-slate-700 mb-2" on:click={() => openModal(poke)}>View Details</button>
+					<button class="btn btn-primary py-2 px-3 w-full bg-slate-700" on:click={() => openMovesModal(poke)}>View Moves</button>
 				</div>
 			{/each}
 		</div>
 	</div>
 </div>
-
-<!-- {#if showModal && selectedPokemon}
-    <Modal on:close={closeModal}>
-        <div class="header">
-            <h2>{selectedPokemon.name}</h2>
-        </div>
-        <div class="body">
-            <img src={selectedPokemon.sprite} alt={selectedPokemon.name} /> -->
-            <!-- Add more Pokémon details here -->
-        <!-- </div>
-        <div class="footer">
-            <button on:click={closeModal}>Close</button>
-        </div>
-    </Modal>
-{/if} -->
