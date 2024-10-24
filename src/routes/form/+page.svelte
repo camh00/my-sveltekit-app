@@ -1,3 +1,10 @@
+<script lang="ts">
+    function handleSubmit(event: SubmitEvent) {
+        event.preventDefault();
+        alert('The form has been submitted');
+        location.reload();
+    }
+</script>
 <div class="container h-full mx-auto flex justify-center items-center text-center">
 	<div class="space-y-5">
 		<h1 class="h1" >Coding Examples</h1>
@@ -22,16 +29,30 @@
 			</ul>
 		</nav>
         <hr class="!border-t-4" />
+		<form class="border rounded-xl p-4" on:submit={handleSubmit} method="POST">
+			<h2 class="h2 mb-4">Please Submit a Review!</h2>
+			<label for="name">Name:</label>
+			<input class="text-black mb-3" type="text" id="name" name="name" required>
+			<label for="email">Email:</label>
+			<input class="text-black mb-3" type="email" id="email" name="email" required>
+			<label for="rating">Rating:</label>
+			<select class="text-black mb-3" id="rating" name="rating" required>
+				<option value="" disabled selected>Please select a rating</option>
+				<option value="1">1 - Poor</option>
+				<option value="2">2 - Fair</option>
+				<option value="3">3 - Good</option>
+				<option value="4">4 - Very Good</option>
+				<option value="5">5 - Excellent</option>
+			</select>
+			<label for="message">Message:</label>
+			<textarea class="text-black" id="message" name="message" required></textarea>
+			<br>
+			<button class="btn variant-filled mt-4" type="submit">Submit</button>
+		</form>
 		
-        <form method="POST">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
-            <button type="submit">Submit</button>
-        </form>
 
 	</div>
+	
 </div>
+
+
