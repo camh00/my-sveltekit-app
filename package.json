@@ -45,6 +45,7 @@
 		"@floating-ui/dom": "1.6.10",
 		"flowbite-svelte": "^0.46.23",
 		"highlight.js": "11.10.0",
+		"mongodb": "^6.10.0",
 		"sidebar": "^1.0.0"
 	}
 }
