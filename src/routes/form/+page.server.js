@@ -1,34 +1,22 @@
 import { redirect, fail } from '@sveltejs/kit';
-import { MongoClient } from 'mongodb';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
-const uri = process.env.MONGODB_URI;
-if (!uri) {
-  throw new Error('MONGODB_URI environment variable is not set');
-}
-const client = new MongoClient(uri);
-
+import clientPromise from '$lib/mongodb';;
 export async function load() {
-    try {
-      await client.connect();
+  try {
+      const client = await clientPromise;
       const database = client.db('CS3380');
       const collection = database.collection('reviews');
-  
+
       const ratings = await collection.find({}, { projection: { rating: 1, _id: 0 } }).toArray();
       const averageRating = ratings.reduce((acc, review) => acc + review.rating, 0) / ratings.length;
       console.log('Average Rating: ' + averageRating);
       return {
-        averageRating
+          averageRating
       };
-    } catch (error) {
+  } catch (error) {
       console.error('Failed to connect to MongoDB', error);
       return fail(500, { message: 'Failed to load ratings' });
-    } finally {
-      await client.close();
-    }
   }
+}
   
   /**
  * @param {import('@sveltejs/kit').RequestEvent} event
@@ -46,7 +34,7 @@ export async function load() {
       }
   
       try {
-        await client.connect();
+        const client = await clientPromise;
         const database = client.db('CS3380');
         const collection = database.collection('reviews');
   
@@ -56,7 +44,6 @@ export async function load() {
         console.error('Failed to submit rating', error);
         return fail(500, { message: 'Failed to submit rating' });
       } finally {
-        await client.close();
       }
     }
   };
