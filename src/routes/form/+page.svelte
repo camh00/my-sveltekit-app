@@ -30,13 +30,13 @@
       console.error('Failed to submit form');
     }
   }
+  export let data: { averageRating: number };
 </script>
 <div class="container h-full mx-auto flex justify-center items-center text-center">
 	<div class="space-y-5">
 		<h1 class="h1" >Coding Examples</h1>
 		
 		<nav class="nav btn-group">
-			<!-- (optionally you can provide a label here) -->
 			<ul>
 				<li>
 					<a href="/" class="bg-primary-500">
@@ -51,10 +51,16 @@
 						<span>🎮</span>
 						<span class="flex-auto">Pokemon</span>
 					</a>
+					<a href="/form" class="bg-primary-500">
+						<span>📋</span>
+						<span class="flex-auto">Form</span>
+					</a>
 				</li>
 			</ul>
 		</nav>
         <hr class="!border-t-4" />
+		<h3 class="h3">Current Average Rating: {data.averageRating}/5</h3>
+		<hr class="!border-t-4" />
 		<form class="border rounded-xl p-4" on:submit={handleSubmit} method="POST">
 			<h2 class="h2 mb-4">Please Submit a Review!</h2>
 			<label for="name">Name:</label>

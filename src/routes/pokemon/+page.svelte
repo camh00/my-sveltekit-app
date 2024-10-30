@@ -112,6 +112,10 @@
 						<span>🎮</span>
 						<span class="flex-auto">Pokemon</span>
 					</a>
+					<a href="/form" class="bg-primary-500">
+						<span>📋</span>
+						<span class="flex-auto">Form</span>
+					</a>
 				</li>
 			</ul>
 		</nav>

@@ -1,14 +1,19 @@
 import { redirect, fail } from '@sveltejs/kit';
-console.log(import.meta.env.VITE_URL);
 import { MongoClient } from 'mongodb';
+import dotenv from 'dotenv';
 
-const uri = import.meta.env.VITE_MONGODB_URI;
+dotenv.config();
+
+const uri = process.env.MONGODB_URI;
+if (!uri) {
+  throw new Error('MONGODB_URI environment variable is not set');
+}
 const client = new MongoClient(uri);
 
 export async function load() {
     try {
       await client.connect();
-      const database = client.db('CS3380'); // Updated database name
+      const database = client.db('CS3380');
       const collection = database.collection('reviews');
   
       const ratings = await collection.find({}, { projection: { rating: 1, _id: 0 } }).toArray();
@@ -42,7 +47,7 @@ export async function load() {
   
       try {
         await client.connect();
-        const database = client.db('CS3380'); // Updated database name
+        const database = client.db('CS3380');
         const collection = database.collection('reviews');
   
         await collection.insertOne({ name, email, rating, message });
