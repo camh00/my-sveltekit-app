@@ -15,7 +15,7 @@ To run this app locally, follow these steps:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-username/my-sveltekit-app.git
+    git clone https://github.com/camh00/my-sveltekit-app.git
     ```
 2. Navigate into the project directory:
     ```bash
