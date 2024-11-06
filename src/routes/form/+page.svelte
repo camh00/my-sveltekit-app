@@ -55,6 +55,10 @@
 						<span>📋</span>
 						<span class="flex-auto">Form</span>
 					</a>
+					<a href="/apis" class="bg-primary-500">
+						<span>📋</span>
+						<span class="flex-auto">API Routes</span>
+					</a>
 				</li>
 			</ul>
 		</nav>
