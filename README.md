@@ -1,38 +1,33 @@
-# create-svelte
+# my-sveltekit-app
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+### Website Hosted at:
+[`https://my-sveltekit-app-git-main-camh00s-projects.vercel.app/`](https://my-sveltekit-app-git-main-camh00s-projects.vercel.app/)
 
-## Creating a project
+## Overview
 
-If you're seeing this, you've probably already done this step. Congrats!
+`my-sveltekit-app` is a web project developed to practice and expand knowledge in JavaScript, with a particular focus on the SvelteKit framework. This app serves as a playground for exploring modern web development techniques, UI components, and the SvelteKit ecosystem.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+The website makes use of the [Skeleton UI Toolkit](https://skeleton.dev), a minimalistic and easy-to-use CSS framework designed for fast, lightweight web design. By integrating Skeleton, the app aims to provide a clean and responsive design with minimal effort.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+## Installation
 
-## Developing
+To run this app locally, follow these steps:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/your-username/my-sveltekit-app.git
+    ```
+2. Navigate into the project directory:
+    ```bash
+    cd my-sveltekit-app
+    ```
+3. Install dependencies:
+    ```bash
+    npm install
+    ```
+4. Run the development server:
+    ```bash
+    npm run dev
+    ```
 
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+5. Open your browser and navigate to `http://localhost:5173` to view the app.
