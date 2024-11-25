@@ -1,4 +1,5 @@
 <script lang="ts">
+  
     let userInput = '';
     let chatHistory: { type: string, text: string }[] = [];
     let loading = false;
@@ -23,10 +24,34 @@
                 prompt: prompt
             })
         });
-        const data = await response.json();
-        console.log(data);
-        chatHistory.push({ type: 'bot', text: data.reply });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch from Llama 3.2 API');
+        }
+
+        const rawText = await response.text();
+        console.log('Raw Response:', rawText);
+
+        // const data = await response.json();
+        // const data = JSON.parse(rawText);
+
+         // Split the raw response by newlines and parse each JSON object
+         const jsonObjects = rawText.split('\n').filter(line => line.trim() !== '');
+            let completeResponse = '';
+            jsonObjects.forEach(jsonObject => {
+                const data = JSON.parse(jsonObject);
+                completeResponse += data.response;
+            });
+
+            console.log('Complete Response:', completeResponse); // Log the complete response
+            chatHistory = [...chatHistory, { type: 'bot', text: completeResponse }];
+            console.log('Updated chatHistory:', chatHistory); // Log the updated chatHistory
+
+        // console.log(data);
+        // chatHistory.push({ type: 'bot', text: data.reply });
+        // console.log('Updated chatHistory:', chatHistory); // Log the updated chatHistory
       } catch (error) {
+        console.error('Error:', error);
         chatHistory.push({ type: 'bot', text: 'Error: Unable to reach the server.' });
       } finally {
         loading = false;
@@ -43,6 +68,7 @@
       background-color: #f9f9f9;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      color:#000;
     }
   
     .message {
@@ -55,12 +81,14 @@
   
     .message.user {
       background-color: #e0f7fa;
-      align-self: flex-start;
+      align-self: flex-end;
+      text-align: right;
     }
   
     .message.bot {
       background-color: #f1f8e9;
-      align-self: flex-end;
+      align-self: flex-start;
+      text-align: left;
     }
   
     .chat-box {

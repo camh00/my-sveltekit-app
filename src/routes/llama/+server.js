@@ -7,7 +7,7 @@ export async function POST({ request }) {
     const { message } = await request.json();
 
     try {
-        const response = await fetch('http://localhost:11434/api/generate', { // Replace with the actual Llama 3.2 API URL
+        const response = await fetch('http://localhost:11434/api/chat', { // Replace with the actual Llama 3.2 API URL
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -20,8 +20,10 @@ export async function POST({ request }) {
         }
 
         const data = await response.json();
+        console.log('API Response:', data); // Log the response
         return json({ reply: data.reply });
     } catch (error) {
+        console.error('Error:', error);
         return json({ reply: 'Error: Unable to reach the Llama 3.2 server.' }, { status: 500 });
     }
 }
