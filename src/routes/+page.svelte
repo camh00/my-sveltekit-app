@@ -26,6 +26,10 @@
 						<span>📋</span>
 						<span class="flex-auto">API Routes</span>
 					</a>
+					<a href="/chatbot" class="bg-primary-500">
+						<span>📋</span>
+						<span class="flex-auto">chatbot</span>
+					</a>
 				</li>
 			</ul>
 		</nav>
