@@ -1,8 +1,5 @@
 import { json } from '@sveltejs/kit';
 
-// FILE: /c:/Users/Cameron Hancock/Documents/School/JavaScript/my-sveltkit-app/src/routes/llama/+page.server.js
-
-
 export async function POST({ request }) {
     const { message } = await request.json();
 

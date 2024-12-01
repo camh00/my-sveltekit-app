@@ -3,7 +3,6 @@
 		<h1 class="h1" >Welcome</h1>
 		
 		<nav class="nav btn-group">
-			<!-- (optionally you can provide a label here) -->
 			<ul>
 				<li>
 					<a href="/" class="bg-primary-500">
