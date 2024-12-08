@@ -64,7 +64,7 @@ To run this app locally, follow these steps:
                     <span class="ml-2">Form</span>
                 </a>
                 <a href="/apis" class="bg-primary-500 text-white px-4 py-2 rounded {activePage === 'apis' ? 'bg-blue-700' : ''}">
-                    <span>☁️                </span>
+                    <span>☁️</span>
                     <span class="ml-2">API Routes</span>
                 </a>
                 <a href="/chatbot" class="bg-primary-500 text-white px-4 py-2 rounded {activePage === 'chatbot' ? 'bg-blue-700' : ''}">
