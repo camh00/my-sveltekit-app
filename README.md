@@ -35,6 +35,7 @@ To run this app locally, follow these steps:
 ## Final Project Links and descriptions
 
 1. Properly organize your code using at least 3 custom components and 5 functional SvelteKit routes.
+   
    The three examples of customs components used in this site is the navigation and footer on each page as well as the chatbot section on the chatbot page.
 
    Heres an example of the navigation components used:
