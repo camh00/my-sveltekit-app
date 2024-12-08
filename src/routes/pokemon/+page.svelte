@@ -3,6 +3,8 @@
 	import type { ModalSettings } from '@skeletonlabs/skeleton';
 	import { initializeStores, Modal } from '@skeletonlabs/skeleton';
 	import data from '$lib/pokemon.json';
+	import Nav from '$lib/components/Nav.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 
 	initializeStores();
 	const modalStore = getModalStore();
@@ -97,36 +99,7 @@
 	<div class="space-y-5">
 		<h1 class="h1">Pokemon</h1>
 		
-		<nav class="nav btn-group">
-			<ul>
-				<li>
-					<a href="/" class="bg-primary-500">
-						<span>🏠</span>
-						<span class="flex-auto">Home</span>
-					</a>
-					<a href="/examples" class="bg-primary-500">
-						<span>🖥️</span>
-						<span class="flex-auto">Examples</span>
-					</a>
-					<a href="/pokemon" class="bg-primary-500">
-						<span>🎮</span>
-						<span class="flex-auto">Pokemon</span>
-					</a>
-					<a href="/form" class="bg-primary-500">
-						<span>📋</span>
-						<span class="flex-auto">Form</span>
-					</a>
-					<a href="/apis" class="bg-primary-500">
-						<span>📋</span>
-						<span class="flex-auto">API Routes</span>
-					</a>
-					<a href="/chatbot" class="bg-primary-500">
-						<span>📋</span>
-						<span class="flex-auto">chatbot</span>
-					</a>
-				</li>
-			</ul>
-		</nav>
+		<Nav activePage="pokemon" />
 		<hr class="!border-t-4" />
 		
 		<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
@@ -141,3 +114,4 @@
 		</div>
 	</div>
 </div>
+<Footer />
