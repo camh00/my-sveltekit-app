@@ -12,7 +12,7 @@
             // Fetch random fact data from Useless Facts API
             const factResponse = await fetch('https://uselessfacts.jsph.pl/api/v2/facts/random?language=en');
             // Fetch weather data from Weather.gov API
-            const weatherResponse = await fetch('https://api.weather.gov/gridpoints/OKX/33,37/forecast');
+            const weatherResponse = await fetch('https://api.weather.gov/gridpoints/SLC/110,100/forecast');
             
             if (factResponse.ok) {
                 factData = await factResponse.json();

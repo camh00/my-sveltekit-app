@@ -34,38 +34,40 @@
   }
   export let data: { averageRating: number };
 </script>
-<div class="min-h-screen container h-full mx-auto flex justify-center items-center text-center">
-	<div class="space-y-5">
-		<h1 class="h1" >Coding Examples</h1>
-		
-		<Nav activePage="form" />
-        <hr class="!border-t-4" />
-		<h3 class="h3">Current Average Rating: {data.averageRating}/5</h3>
-		<hr class="!border-t-4" />
-		<form class="border rounded-xl p-4" on:submit={handleSubmit} method="POST">
-			<h2 class="h2 mb-4">Please Submit a Review!</h2>
-			<label for="name">Name:</label>
-			<input class="text-black mb-3" type="text" id="name" name="name" bind:value={name} required>
-			<label for="email">Email:</label>
-			<input class="text-black mb-3" type="email" id="email" name="email" bind:value={email} required>
-			<label for="rating">Rating:</label>
-			<select class="text-black mb-3" id="rating" name="rating" bind:value={rating} required>
-			  <option value="" disabled selected>Please select a rating</option>
-			  <option value="1">1 - Poor</option>
-			  <option value="2">2 - Fair</option>
-			  <option value="3">3 - Good</option>
-			  <option value="4">4 - Very Good</option>
-			  <option value="5">5 - Excellent</option>
-			</select>
-			<label for="message">Message:</label>
-			<textarea class="text-black" id="message" name="message" bind:value={message} required></textarea>
-			<br>
-			<button class="btn variant-filled mt-4" type="submit">Submit</button>
-		  </form>
-		
-
-	</div>
-	
+<div class="flex flex-col min-h-screen">
+  <div class="bg-white shadow-md w-full">
+    <div class="container mx-auto py-4 text-center">
+      <h1 class="text-4xl font-bold">Coding Examples</h1>
+      <Nav activePage="form" />
+      <hr class="border-t-4 border-gray-300 mt-2" />
+    </div>
+  </div>
+  <div class="flex-grow container mx-auto flex justify-center items-center text-center p-5">
+    <div class="space-y-5">
+      <h3 class="h3">Current Average Rating: {data.averageRating}/5</h3>
+      <hr class="!border-t-4" />
+      <form class="border rounded-xl p-4" on:submit={handleSubmit} method="POST">
+        <h2 class="h2 mb-4">Please Submit a Review!</h2>
+        <label for="name">Name:</label>
+        <input class="text-black mb-3" type="text" id="name" name="name" bind:value={name} required>
+        <label for="email">Email:</label>
+        <input class="text-black mb-3" type="email" id="email" name="email" bind:value={email} required>
+        <label for="rating">Rating:</label>
+        <select class="text-black mb-3" id="rating" name="rating" bind:value={rating} required>
+          <option value="" disabled selected>Please select a rating</option>
+          <option value="1">1 - Poor</option>
+          <option value="2">2 - Fair</option>
+          <option value="3">3 - Good</option>
+          <option value="4">4 - Very Good</option>
+          <option value="5">5 - Excellent</option>
+        </select>
+        <label for="message">Message:</label>
+        <textarea class="text-black" id="message" name="message" bind:value={message} required></textarea>
+        <br>
+        <button class="btn variant-filled mt-4" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
 </div>
 <Footer />
 
