@@ -35,15 +35,12 @@
   export let data: { averageRating: number };
 </script>
 <div class="flex flex-col min-h-screen">
-  <div class="bg-white shadow-md w-full">
-    <div class="container mx-auto py-4 text-center">
-      <h1 class="text-4xl font-bold">Coding Examples</h1>
-      <Nav activePage="form" />
-      <hr class="border-t-4 border-gray-300 mt-2" />
-    </div>
-  </div>
-  <div class="flex-grow container mx-auto flex justify-center items-center text-center p-5">
+  <div class="container h-full mx-auto flex justify-center items-center text-center">
     <div class="space-y-5">
+      <h1 class="h1" >Coding Examples</h1>
+      
+      <Nav activePage="form" />
+          <hr class="!border-t-4" />
       <h3 class="h3">Current Average Rating: {data.averageRating}/5</h3>
       <hr class="!border-t-4" />
       <form class="border rounded-xl p-4" on:submit={handleSubmit} method="POST">
@@ -65,7 +62,7 @@
         <textarea class="text-black" id="message" name="message" bind:value={message} required></textarea>
         <br>
         <button class="btn variant-filled mt-4" type="submit">Submit</button>
-      </form>
+        </form>
     </div>
   </div>
 </div>
