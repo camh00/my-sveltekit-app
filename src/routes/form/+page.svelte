@@ -37,7 +37,7 @@
 <div class="flex flex-col min-h-screen">
   <div class="container h-full mx-auto flex justify-center items-center text-center">
     <div class="space-y-5">
-      <h1 class="h1" >Coding Examples</h1>
+      <h1 class="h1" >Site Review</h1>
       
       <Nav activePage="form" />
           <hr class="!border-t-4" />
